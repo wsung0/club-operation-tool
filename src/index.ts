@@ -1,14 +1,15 @@
 import express from 'express'
 import dotenv from 'dotenv'
 import { createConnection } from 'typeorm'
-import { Club } from './entities/Club'
-import { Example } from './entities/Example'
-import { File } from './entities/File'
-import { Post } from './entities/Post'
-import { PostGroup } from './entities/PostGroup'
-import { Select } from './entities/Select'
+import { userRouter } from './routes/User'
 import { User } from './entities/User'
+import { Club } from './entities/Club'
+import { PostGroup } from './entities/PostGroup'
+import { Post } from './entities/Post'
+import { File } from './entities/File'
 import { Vote } from './entities/Vote'
+import { Example } from './entities/Example'
+import { Select } from './entities/Select'
 
 const app = express()
 
@@ -29,6 +30,8 @@ const main = async () => {
     console.log('Connected to MariaDB')
 
     app.use(express.json())
+
+    app.use('/api/user', userRouter)
 
     app.listen(process.env.PORT, () => {
       console.log('Now running')

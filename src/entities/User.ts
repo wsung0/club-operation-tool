@@ -1,4 +1,4 @@
-import { IsEmail, Min } from 'class-validator'
+import { IsEmail } from 'class-validator'
 import { Column, Entity, ManyToMany, OneToMany } from 'typeorm'
 import { Club } from './Club'
 import { Post } from './Post'
@@ -10,12 +10,12 @@ import { Vote } from './Vote'
 export class User extends Base {
   @Column({
     unique: true,
+    primary: true,
   })
   @IsEmail()
   email: string
 
   @Column()
-  @Min(8)
   password: string
 
   @Column()
